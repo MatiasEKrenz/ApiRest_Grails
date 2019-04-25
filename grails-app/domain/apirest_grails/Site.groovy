@@ -8,6 +8,8 @@ class Site {
 
     String name
 
+    //static hasMany = [categories:Category]
+
     static constraints = {
         name blank: false, nullable: false
     }

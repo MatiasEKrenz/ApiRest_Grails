@@ -14,6 +14,9 @@ class Category {
 
     //static hasMany = [items: Item]
 
+
+    //static belongsTo = [site:Site]
+
     //tengo que autogenerar los controllers para hacer filtros y que no me salgan todos los items de todas las categorias
 
     static constraints = {

@@ -51,6 +51,12 @@ class ClientController {
     /*
 
 
+    noSelection="['':'-Elija un país-']"
+
+
+
+
+
 <label for="select"></label><select id="select">
     <g:each in="${result}" var="site" params="[param1: site.id]">
         <option value="${site.id}" data-foo="${site.slug}">${site.name} </option>

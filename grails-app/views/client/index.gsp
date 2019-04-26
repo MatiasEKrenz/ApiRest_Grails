@@ -6,7 +6,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+<html style="font-family: sans-serif; line-height: 1.15;">
 <head>
 
     <title></title>
@@ -23,29 +23,34 @@
                     content.innerHTML = "";
                     document.getElementById('subcategories').innerHTML="";
 
-                    table = document.createElement('table');
-                    table.style = 'border-collapse: collapse;';
-                    tr = document.createElement('tr');
+                    table = document.createElement('div');
+                    table.style = 'border-collapse: collapse; padding: 15px;';
+                   // tr = document.createElement('tr');
                     th = document.createElement('th');
-                    th.style =  "padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"
+                    th.style =  "padding: 8px; text-align: left; border-bottom: 1px solid #ddd;";
                     th.innerText = "Root";
-                    tr.appendChild(th);
-                    table.appendChild(tr);
+                    //tr.appendChild(th);
+                    table.appendChild(th);
+                    //table.appendChild(tr);
                     categorias.map( function callback(currentValue) {
-                        tr = document.createElement('tr');
-                        td = document.createElement('td');
-                        td.style =  "padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"
-                        button = document.createElement('button')
-                        button.type = "button"
+                        /*tr = document.createElement('tr');
+                        td = document.createElement('td');*/
+                        td = document.createElement('li');
+                        td.style =  "padding: 8px; text-align: left;";
+                        button = document.createElement('a');
+                        //button.type = "button"
+                        button.style = "cursor: pointer";
                         button.addEventListener('click', function(){
                             selectCategory(currentValue.id);
                         }, false);
                         button.innerText = currentValue.name;
-                        td.appendChild(button);
+                        /*td.appendChild(button);
                         tr.appendChild(td);
-                        table.appendChild(tr);
+                        table.appendChild(tr);*/
+                        table.appendChild(td);
+                        td.appendChild(button);
                     });
-                    tr = document.createElement('tr')
+                   // tr = document.createElement('tr')
                     content.appendChild(table);
 
                 });
@@ -67,8 +72,9 @@
 
 
                     if(subcategoria == null){
-                        subcategoria = document.createElement('div')
+                        subcategoria = document.createElement('div');
                         subcategoria.id = 'subcategoria' + subcategorias.path_from_root.length;
+                        subcategoria.style = "border-radius: 10px; border: 1px solid rgb(170, 170, 170); margin-left: 15px;";
                     }else{
                         subcategoria.innerHTML = "";
                         for (var i = subcategorias.path_from_root.length; i <= content.childElementCount; i++) {
@@ -80,29 +86,36 @@
                     if(subcategorias.children_categories.length == 0) {
                         alert('categoria: ' + subcategorias.name + ' id: ' + subcategorias.id);
                     }else{
-                        table = document.createElement('table');
-                        table.style = 'border-collapse: collapse;';
-                        tr = document.createElement('tr');
+                        table = document.createElement('div');
+                       // table.style = 'border-collapse: collapse; padding: 15px; margin-left: 20px auto;';
+                        table.style = 'border-collapse: collapse; padding: 15px; margin-left: 20px auto;';
+                      //  tr = document.createElement('tr');
+                        //th = document.createElement('th');
                         th = document.createElement('th');
                         th.style =  "padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"
                         th.innerText = subcategorias.name;
-                        tr.appendChild(th);
-                        table.appendChild(tr);
+                        //tr.appendChild(th);
+                        table.appendChild(th);
                         subcategorias.children_categories.map( function callback(currentValue) {
-                            tr = document.createElement('tr');
-                            td = document.createElement('td');
-                            td.style =  "padding: 8px; text-align: left; border-bottom: 1px solid #ddd;"
-                            button = document.createElement('button')
-                            button.type = "button"
+                           // tr = document.createElement('tr');
+                            td = document.createElement('li');
+                            td.style =  "padding: 8px; text-align: left;";
+                            button = document.createElement('a');
+                           // button.type = "button"
+                            button.style = "cursor: pointer";
                             button.addEventListener('click', function(){
                                 selectCategory(currentValue.id);
                             }, false);
                             button.innerText = currentValue.name;
-                            td.appendChild(button);
+                            /*td.appendChild(button);
                             tr.appendChild(td);
-                            table.appendChild(tr);
+                            table.appendChild(tr);*/
+
+                            table.appendChild(td);
+                            td.appendChild(button);
+
                         });
-                        tr = document.createElement('tr')
+                       // tr = document.createElement('tr')
                         subcategoria.appendChild(table);
                     }
                     content.appendChild(subcategoria);
@@ -113,16 +126,17 @@
     </script>
 </head>
 <body>
-<h1> Categorias de Mercado Libre</h1>
-<g:select name="sites.name" from="${sites}" noSelection="['':'-Elija un país-']"
+<h1> Categorías Mercado Libre</h1>
+<g:select name="sites.name" from="${sites}"
           optionKey="id"
           optionValue="name"
           onchange="changeSite(this.value);"/>
 <div style="display: flex">
-    <div id="categories">
+    <div id="categories" style="border-radius: 10px; border: 1px solid rgb(170, 170, 170);">
 
     </div>
-    <div id="subcategories" style="display: flex" >
+    <!--<div id="subcategories" style="display: flex; border-radius: 10px; border: 1px solid rgb(170, 170, 170);" > -->
+        <div id="subcategories" style="display: flex; " >
 
     </div></div>
 </body>
